@@ -7,16 +7,30 @@ module.exports = {
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: 'main.js'
+        filename: '[name].js'
     },
     mode: 'production',
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    chunks: 'initial',
+                    name: 'vendor',
+                    test: /phaser|adapter/,
+                }
+            }
+        }
+    },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: 'babel-loader',
+                    options : {
+                        cacheDirectory : true
+                    }
                 }
             }
         ]
@@ -24,6 +38,7 @@ module.exports = {
     resolve: {
         alias: {
             'phaser': path.resolve(__dirname, '../src/libs/phaser-wx.js'),
+            'adapter': path.resolve(__dirname, '../src/libs/weapp-adapter.js'),
             'assets': path.resolve(__dirname, '../src/assets/')
         }
     },

@@ -1,5 +1,5 @@
 // weapp-adapter 需最先引入
-import './libs/weapp-adapter.js';
+import 'adapter';
 
 import Phaser from 'phaser';
 
