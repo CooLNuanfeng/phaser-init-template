@@ -10,6 +10,7 @@ export default class GameState extends Phaser.State {
     preload() {}
 
     create() {
+        {{unless init}}
         // 开启物理引擎
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -64,16 +65,18 @@ export default class GameState extends Phaser.State {
 
         this.soundBullet = this.game.add.audio('bullet');
         this.soundBoom = this.game.add.audio('boom');
-
+        {{/unless}}
     }
 
     update() {
+        {{unless init}}
         this.game.physics.arcade.overlap(this.hero, this.enemyGroup, this.dead, null, this);
         this.game.physics.arcade.overlap(this.enemyGroup, this.bulletGroup, this.hit, null, this);
+        {{/unless}}
     }
 
     render() {}
-
+    {{unless init}}
     randomEnemyX() {
         var halfW = 120 * 0.7;
         return this.game.rnd.integerInRange(halfW, this.game.width - halfW);
@@ -155,6 +158,7 @@ export default class GameState extends Phaser.State {
     }
 
     gameOver() {
+
         var dialog = this.game.add.sprite(this.game.width / 2, this.game.height / 2, 'common', 'dialog');
         dialog.anchor.setTo(0.5, 0.5);
         dialog.scale.setTo(2.5, 2.5);
@@ -193,5 +197,5 @@ export default class GameState extends Phaser.State {
     restart() {
         this.game.state.start('game');
     }
-
+    {{/unless}}
 }

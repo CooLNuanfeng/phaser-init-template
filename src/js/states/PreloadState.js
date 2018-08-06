@@ -9,6 +9,7 @@ export default class GameState extends Phaser.State {
     }
 
     preload() {
+        {{unless init}}
         this.game.load.image('bg', 'assets/images/bg.jpg');
         this.game.load.image('hero', 'assets/images/hero.png');
         this.game.load.image('enemy', 'assets/images/enemy.png');
@@ -19,13 +20,16 @@ export default class GameState extends Phaser.State {
         this.game.load.audio('bgm', 'assets/media/bgm.mp3');
         this.game.load.audio('boom', 'assets/media/boom.mp3');
         this.game.load.audio('bullet', 'assets/media/bullet.mp3');
+        {{/unless}}
     }
 
     create() {
+        {{unless init}}
         // invalid sound lock
         this.game.sound.touchLocked = false;
 
         this.game.state.start('game');
+        {{/unless}}
     }
 
 }
