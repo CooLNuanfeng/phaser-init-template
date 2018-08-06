@@ -10,7 +10,7 @@ export default class GameState extends Phaser.State {
     preload() {}
 
     create() {
-        {{unless init}}
+        {{#unless init}}
         // 开启物理引擎
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -69,14 +69,14 @@ export default class GameState extends Phaser.State {
     }
 
     update() {
-        {{unless init}}
+        {{#unless init}}
         this.game.physics.arcade.overlap(this.hero, this.enemyGroup, this.dead, null, this);
         this.game.physics.arcade.overlap(this.enemyGroup, this.bulletGroup, this.hit, null, this);
         {{/unless}}
     }
 
     render() {}
-    {{unless init}}
+    {{#unless init}}
     randomEnemyX() {
         var halfW = 120 * 0.7;
         return this.game.rnd.integerInRange(halfW, this.game.width - halfW);

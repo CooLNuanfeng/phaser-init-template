@@ -8,7 +8,7 @@ export default class GameState extends Phaser.State {
 	}
 
 	create() {
-		{{unless init}}
+		{{#unless init}}
 		// this is very important
 		this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
 

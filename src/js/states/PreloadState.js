@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
+{{#unless init}}
 import Common from 'assets/atlas/common.js'
+{{/unless}}
 
 export default class GameState extends Phaser.State {
 
@@ -9,7 +11,7 @@ export default class GameState extends Phaser.State {
     }
 
     preload() {
-        {{unless init}}
+        {{#unless init}}
         this.game.load.image('bg', 'assets/images/bg.jpg');
         this.game.load.image('hero', 'assets/images/hero.png');
         this.game.load.image('enemy', 'assets/images/enemy.png');
@@ -24,7 +26,7 @@ export default class GameState extends Phaser.State {
     }
 
     create() {
-        {{unless init}}
+        {{#unless init}}
         // invalid sound lock
         this.game.sound.touchLocked = false;
 
