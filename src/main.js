@@ -1,6 +1,5 @@
 // weapp-adapter 需最先引入
 import 'adapter';
-
 import Phaser from 'phaser';
 
 import BootState from './js/states/BootState.js'
