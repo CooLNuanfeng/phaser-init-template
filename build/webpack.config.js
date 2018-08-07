@@ -52,5 +52,8 @@ module.exports = {
             {from:'./src/game.json',to:'game.json'},
             {from:'./src/assets',to:'assets'}
         ])
-    ]
+    ],
+    stats: {
+        warnings: false
+    }
 }
