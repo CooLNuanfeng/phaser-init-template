@@ -1,4 +1,5 @@
 const path = require('path');
+const HappyPack = require('happypack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -9,7 +10,7 @@ module.exports = {
         path: path.resolve(__dirname, '../dist'),
         filename: '[name].js'
     },
-    mode: 'production',
+    mode: 'production', //development
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -26,12 +27,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options : {
-                        cacheDirectory : true
-                    }
-                }
+                use: 'happypack/loader'
             }
         ]
     },
@@ -51,7 +47,15 @@ module.exports = {
             {from:'./src/game.js',to:'game.js'},
             {from:'./src/game.json',to:'game.json'},
             {from:'./src/assets',to:'assets'}
-        ])
+        ]),
+        new HappyPack({
+            loaders: [{
+                loader:'babel-loader',
+                options : {
+                    cacheDirectory : true
+                }
+            }]
+        })
     ],
     stats: {
         warnings: false
